@@ -1,6 +1,6 @@
 Name:          log4j12
 Version:       1.2.17
-Release:       24
+Release:       25
 Summary:       A logging library for Java
 License:       ASL 2.0
 URL:           http://logging.apache.org/log4j/1.2/
@@ -12,6 +12,10 @@ Patch0000:     0001-logfactor5-changed-userdir.patch
 Patch0001:     0009-Fix-tests.patch
 Patch0002:     0010-Fix-javadoc-link.patch
 Patch0003:     0001-Backport-fix-for-CVE-2017-5645.patch
+Patch0004:     CVE-2021-4104.patch
+Patch0005:     CVE-2022-23302.patch
+Patch0006:     CVE-2022-23305.patch
+Patch0007:     CVE-2022-23307.patch
 
 BuildRequires: maven-local mvn(ant-contrib:ant-contrib) mvn(javax.mail:mail)
 BuildRequires: mvn(junit:junit) mvn(org.apache.ant:ant-junit)
@@ -19,7 +23,7 @@ BuildRequires: mvn(org.apache.felix:maven-bundle-plugin)
 BuildRequires: mvn(org.apache.geronimo.specs:geronimo-jms_1.1_spec)
 BuildRequires: mvn(org.apache.maven.plugins:maven-antrun-plugin)
 BuildRequires: mvn(org.apache.maven.plugins:maven-assembly-plugin)
-BuildRequires: mvn(oro:oro) mvn(org.apache.ant:ant-nodeps)
+BuildRequires: mvn(oro:oro) mvn(org.apache.ant:ant-nodeps) maven
 
 Obsoletes:     log4j <= 0:1.2.17-14
 
@@ -80,7 +84,7 @@ sed -i '/TelnetAppenderTest/d' tests/src/java/org/apache/log4j/CoreTestSuite.jav
 %mvn_file log4j:log4j log4j %{name}
 
 %build
-%mvn_build
+%mvn_build -b
 
 %install
 %mvn_install -X
@@ -119,5 +123,8 @@ fi
 %files help -f .mfiles-javadoc
 
 %changelog
+* Tue Feb 08 2022 wangkai <wangkai385@huawei.com> - 1.2.17-25
+- Fix cves
+
 * Fri Dec 13 2019 openEuler Buildteam <buildteam@openeuler.org> - 1.2.17-24
 - Package init
