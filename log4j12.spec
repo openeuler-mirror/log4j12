@@ -1,6 +1,6 @@
 Name:          log4j12
 Version:       1.2.17
-Release:       24
+Release:       25
 Summary:       A logging library for Java
 License:       ASL 2.0
 URL:           http://logging.apache.org/log4j/1.2/
@@ -12,6 +12,7 @@ Patch0000:     0001-logfactor5-changed-userdir.patch
 Patch0001:     0009-Fix-tests.patch
 Patch0002:     0010-Fix-javadoc-link.patch
 Patch0003:     0001-Backport-fix-for-CVE-2017-5645.patch
+Patch0004:     Fix-SocketServerTest.patch
 
 BuildRequires: maven-local mvn(ant-contrib:ant-contrib) mvn(javax.mail:mail)
 BuildRequires: mvn(junit:junit) mvn(org.apache.ant:ant-junit)
@@ -119,5 +120,7 @@ fi
 %files help -f .mfiles-javadoc
 
 %changelog
+* Wed Mar 30 2022 Yunxiang Luo <yunxiang@nj.iscas.ac.cn>  - 1.2.17-25
+- Remove SocketServerTestCase for RISCV in sepc, due to the qemu's network limitation
 * Fri Dec 13 2019 openEuler Buildteam <buildteam@openeuler.org> - 1.2.17-24
 - Package init
